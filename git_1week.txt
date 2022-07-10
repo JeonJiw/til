@@ -1,0 +1,37 @@
+1. 앞으로 git 프로젝트 만들고 싶은 것
+
+- 부위 별 운동 모음집 - 실제로 내가 해보고 효과가 있었던 운동만을 모으기
+
+2. 1주차 주요 개념 키워드 적어보기
+
+*키워드*
+
+- 버전관리 : 프로젝트의 변경사항들을 알고 있는 것
+
+- Git : 가장 널리 쓰이는 버전관리 도구로 commit을 사용해 관리
+
+- Commit : 현재 프로젝트의 상태를 저장. 누가(author), 언제, 무엇(프로젝트 변경 내용)을 했는지 보여준다.
+
+- repo : git으로 관리되는 프로젝트
+  - 로컬repo : 내 컴퓨터에 저장되어 있는 repository
+  - 원격repo : Github 처럼 다른 곳에서 접속할 수 있는 공간에 저장되어 있는 repository. 
+              동시에 작업이 가능(협업). 컴퓨터에 구애받지 않고 url로 작업 가능
+  
+- Pull : 원격repo -> 로컬repo
+
+- Push : 로컬repo -> 원격repo
+
+- Git initialize(Git 초기화) : 컴퓨터에 있는 프로젝트를 Git이 관리하는 프로젝트로 만드는 것. Sourcetree 에서 로컬 저장소 추가
+
+- Clone : 로컬repo가 없고 원격repo에 있는 내용 가져오기
+
+- 로컬repo가 원격repo를 Trackiing 하게 설정 : 로컬repo, 원격repo 둘 다 있고 두개 연결하는 것
+
+- 순서 : Git initialize -> add/staging -> commit
+
+<Error>
++ push하는 법
+Token 어쩌고 하는 오류 : 새로운 token 만들고 keychain에서 git관련 된 것 모두 비밀번호 토큰으로 바꿔주기
+
+
+
