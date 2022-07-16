@@ -146,13 +146,40 @@ function solution(price, money, count) {
 
 
 
+//이상한 문자 만들기
+
+const solution = (s) => {
+    // s= "try hello world"라고 가정을 해보겠습니다.
+    // string 타입의 값을 분리할 때 split 메서드를 사용합니다.
+    // split된 값은 배열안데 각 요소가 됩니다.
+    // words = ['try', 'hello', 'world'];
+    const words = s.split(' ');
+
+    // words 배열의 각 요소 값을 변경하기 위해서 map함수를 사용합니다.
+    // newWords는 map함수에서 return 값을 요소로 할당 받습니다.
+    const newWords = words.map((w) => {
+        // words 배열의 각 요소(w)의 변형된 값을 저장하기위해 temp를 let으로 선언합니다.
+        let temp = ""
+        // w의 짝수번째 char은 대문자로 홀수번째 char은 소문자로 변형합니다.
+        for(let i = 0; i < w.length; i++){
+            if(i%2 === 0) temp += w[i].toUpperCase();
+            if(i%2 !== 0) temp += w[i].toLowerCase();
+        }
+
+        return temp;
+    })
+
+    // 마지막으로 변형된 단어를 요소로 가지는 배열을 string으로 변환하기 위해서 join 메서드를 사용합니다.
+    // 각단어는 한칸씩 띄어져있어야되기 때문에 join 파라미터안에 한칸 띈 string 값을 넣어줍니다.
+    const answer = newWords.join(' ')
+
+   return answer;
+}
 
 
 
 
 
-
-/* 
     //모의고사
 
 function solution(answers) {
@@ -198,16 +225,46 @@ function sum(A, B) {
             answer = a + b;
     }
     console.log(answer);
-} */
+} 
 
-/* ß */
-/* let a = A[0]; // Array A의 0번째 인덱스값
-let b = B[0]; // Array B의 0번째 인덱스값
 
-let c = A[0+1]; // Array A의 1번째 인덱스값
-let d = B[0+1]; // Array B의 1번째 인덱스값
+// 모의고사
 
-let An = [[a+b],[c+d]] // [각 Array의 0번쩨 인덱스 값의 합, 0+1번째 인덱스 값의 합]
+function solution(answers) {
+    // 각 수포자의 패턴을 변수로 선언하고 할당시킵니다.
+    // one = 1번 수포자, two = 2번 수포자, three = 3번 수포자
+    // results는 각 수포자들이 몇개의 문제를 맞췄는지를 저장합니다.
+    // results[0] = 1번 수포자 맞춘 개수
+    // results[1] = 2번 수포자 맞춘 개수
+    // results[2] = 3번 수포자 맞춘 개수
+    const one = [1,2,3,4,5];
+    const two = [2,1,2,3,2,4,2,5];
+    const three = [3,3,1,1,2,2,4,4,5,5];
+    const results = [0,0,0];
 
-console.log(An);
-//여기까지는 작동 완료 */
+    // 몇개의 문제를 맞췄는지 알기위해서
+    // answers의 각 요소들을 one, two, three의 요소들과 비교합니다.
+    // 값이 같을때마다 results 요소에 1씩 더합니다.
+    for(let i = 0; i < answers.length; i++){
+        if(one[i%5] === answers[i]) results[0]++;
+        if(two[i%8] === answers[i]) results[1]++;
+        if(three[i%10] === answers[i]) results[2]++;
+    }
+
+    // 제일 많이 맞춘 개수를 알기위해서 result 배열에서 제일 큰 값을 가지고 있는 요소를
+    // maxNum 변수의 값으로 할당시킵니다.
+    // 최대값을 구할때는 Math.max() 메서드를 사용합니다.
+    // 메서드 파라미터에는 숫자를 넣어야되기 때문에
+    // results 배열을 spread 연산자를 사용해서 숫자 타입으로 파라미터에 넣어줍니다.
+    const maxNum = Math.max(...results);
+    const answer = [];
+
+    // 누가 제일 많이 맞췄는지 알기위해서 results의 요소들을 maxNum과 비교해서
+    // 같을 경우에 i+1(몇번째 수포자인지)을 answer에 push메서드를 사용해서 넣어줍니다.
+    // 이미 오름차순으로 비교하기때문에 오름차순으로 정렬할 필요가없습니다.
+    for(let i = 0; i < results.length; i++){
+        if(results[i] === maxNum) answer.push(i+1);
+    }
+
+    return answer;
+}
