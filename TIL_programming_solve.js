@@ -34,7 +34,7 @@ function solution(num) {
     return answer;
 }
 
-//3. 가운데 글지 가져오기
+//3. 가운데 글자 가져오기
 
 function solution(s) {
     var answer = '';
@@ -78,8 +78,14 @@ function solution(a){
     return Number(a)
 }
 // -1234나옴
+/* // 문자열을 정수로 바꾸는 다양한 방법
+    // string 타입으로된 숫자를 Number 타입으로 바꾸는 방법;
+    1. const answer = Number(s); Number 함수 사용
+    2. const answer = ParseInt(s); ParseInt 함수 사용
+    3. const answer = s/1; 나누기
+    4. const answer = s*1; 곱하기
 
-
+ */
 //6. 없는 숫자 더하기
 
 //numbers = [1,2,3,4,6,7,8,0]
