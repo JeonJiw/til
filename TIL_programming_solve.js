@@ -99,6 +99,12 @@ function solution(numbers) {
 다음번 총합은 1, 현재값은 2일 때 총합과 현재값을 더하면 3이 된다.
 계속 반복하면 배열의 총 합을 구할 수 있고 전체 45에서 빼면 없는 숫자의 합이 나온다.
 */
+//reduce를 for반복문으로 써보기
+let currentValue = [];
+let sum = 0;
+for (let i = 0; i <currentValue.length; i++){
+    sum = sum + currentValue;
+}
 
 /* 또 다른 풀이법 */
 function solution(numbers) {
@@ -332,16 +338,6 @@ function solution(s){
 //check_p == check_y 라면, true(value1)
 //check_p == check_y 아니라면, false(value2)
 
-// i를 앞에다가 두고 쓸 수도 있다.
-function solution(seoul) {
-    var answer = '';
-    for(var i = 0; i<seoul.length; i++) {
-        if(seoul[i] == "Kim") {
-            answer = i;
-            break; // i가 발견되었다면 break하고 해당 인덱스를 return
-        }
-    }
-    return '김서방은 '+answer+'에 있다';
 }
 
 //17. 문자열 다루기 기본
@@ -355,6 +351,7 @@ function onlyNumbers(str) {
   console.log(onlyNumbers('123.5')); // 👉️ false
 
   //정규식.test(string) string에 정규식 포함 되어있으면 true, 아니면 false
+  //정규식만 써야한다.
 
 
 //18. 서울에서 김서방 찾기
@@ -379,3 +376,15 @@ console.log(beasts.indexOf('bison', 2));  //찾으려는 element와 시작하는
 
 console.log(beasts.indexOf('giraffe')); //'giraffe'는 없으니까 -1
 // expected output: -1
+
+
+// i를 앞에다가 두고 쓸 수도 있다.
+function solution(seoul) {
+    var answer = '';
+    for(var i = 0; i<seoul.length; i++) {
+        if(seoul[i] == "Kim") {
+            answer = i;
+            break; // i가 발견되었다면 break하고 해당 인덱스를 return
+        }
+    }
+    return '김서방은 '+answer+'에 있다';
