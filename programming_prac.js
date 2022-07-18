@@ -268,3 +268,208 @@ function solution(answers) {
 
     return answer;
 }
+
+
+/* 16. 문자열 내 p와 y의 개수 */
+
+//string은 p,P,y,Y로 이루어져 있다.
+//대,소문자 구분없이 각 p와 y의 개수를 확인해서 개수가 같으면 true, 다르면 false를 나타낸다.
+
+//문제 분석하기
+//p의 개수 숫자로 나타내기
+//y의 개수 숫자로 나타내기
+//두개의 숫자를 비교하기
+
+
+//chacrater가 일치하는 method를 찾기 위한 것....
+//Method1
+function isCharacterALetter(char) {
+    return (/[a-zA-Z]/).test(char) //소문자 a-z 대문자 A-Z 와 char를 매칭해서 일치하면 true 아니면 false
+  }
+/*   
+console.log(isCharacterALetter("t")) // true
+console.log(isCharacterALetter("W")) // true
+console.log(isCharacterALetter("5")) // false
+console.log(isCharacterALetter("β")) // false */
+
+//대소문자
+const str = 'Hello world';
+const char = 'L';
+
+// 👇️ true
+console.log(str.toLowerCase().includes(char.toLowerCase()));
+
+
+//Method2
+// Not Supported in IE 6-11
+const str = 'Hello world';
+const char = 'e';
+
+console.log(str.includes(char)); // 👉️ true
+
+if (str.includes(char)) {
+  // 👉️ string contains the character
+}
+
+//내가 시도한 방법 - 작동이 안된다....ㅠㅠ
+function solution16(s){
+    let answer = "";
+    let count_p = 0;
+    let count_y = 0;
+    for(i=0; i <s.length; i++){
+        if(s.charAt(i) == "p","P"){
+            count_p += 1;
+            count_y += 1;
+        }
+    }
+    if(count_p==count_y){
+        answer = ture;
+    } else {
+    } answer = false;
+    return answer;
+}
+
+//정답1
+function solution(s){
+    let change = s.toLowerCase(); //소문자로 바꾸기
+    console.log(change);
+    let check_p = change.match(/p/g).length; //p와 일치하는 개수
+    console.log(check_p);
+    let check_y = change.match(/y/g).length; //y와 일치하는 개수
+    console.log(check_y);
+    
+    if (check_p == check_y) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// .match
+const paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+const regex = /[A-Z]/g; //정규식
+const found = paragraph.match(regex); //정규식에 매칭되는 것(대문자) 찾기
+
+console.log(found);
+// expected output: Array ["T", "I"]
+
+
+//정답2
+function solution(s){
+    let change = s.toLowerCase(); //소문자로 바꾸기
+//    console.log(change);
+    let check_p = change.split("p").length; //p를 기준으로 문자열을 나눠주고 길이 저장
+    let check_y = change.split("y").length; //y를 기준으로 문자열을 나눠주고 길이 저장
+    
+    return check_p == check_y ? true : false;
+}
+
+/* 서울에서 김서방 찾기 */
+
+//정답
+function solution(seoul) {
+    var answer = '';
+    let find = seoul.indexOf('Kim');
+    answer = '김서방은 ' + find + '에 있다'
+    return answer;
+}
+
+//.indexOf
+const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+
+console.log(beasts.indexOf('bison'));
+// expected output: 1
+
+// start from index 2
+console.log(beasts.indexOf('bison', 2));
+// expected output: 4
+
+console.log(beasts.indexOf('giraffe'));
+// expected output: -1
+
+
+//아래는 배열안에서 요소를 찾는 것까지는 했으나 그 요소가 원래 있던 배열에서 몇번째 있었는지는 구현하지 못함
+function solution(seoul) {
+    var answer = '';
+    let find = seoul.filter(element => element === 'Kim');
+    let num = find;//filter은 어느 숫자 이상, 길이 이상의 element를 모두 찾을 때 쓰는 것이 좋을 것 같다.
+console.log(num);
+    return answer;
+}
+
+// i를 앞에다가 두고 쓸 수도 있다.
+function solution(seoul) {
+    var answer = '';
+    for(var i = 0; i<seoul.length; i++) {
+        if(seoul[i] == "Kim") {
+            answer = i;
+            break; // i가 발견되었다면 break하고 해당 인덱스를 return
+        }
+    }
+    return '김서방은 '+answer+'에 있다';
+}
+
+/* 문자열 다루기 기본 */
+//정답
+function onlyNumbers(str) {
+    return /^[0-9]+$/.test(str);
+  }
+  
+  console.log(onlyNumbers('1234')); // 👉️ true
+  console.log(onlyNumbers('123hello123')); // 👉️ false
+  console.log(onlyNumbers('123.5')); // 👉️ false
+
+  //정규식.test(string) string에 정규식 포함 되어있으면 true, 아니면 false
+
+
+
+//내적
+  function solution(a, b) {
+    let answer = 0;
+    for(let i=0; i<a.length; i++){
+        answer += a[i]*b[i] //+= 인것을 기억할 것!!
+    }
+    //a[i]*b[i]의 합
+    return answer;
+}
+
+//나누어 떨어지는 숫자 배열
+
+function solution(arr, divisor) {
+    var answer = [];
+    for (let i=0; i<arr.length; i++) {
+        if (arr[i] % divisor == 0) {
+            answer.push(arr[i]);
+    } 
+} 
+    answer.sort((a,b)=>a-b);  //.sort() 간단한 함수는 이렇게 쓴다
+    if (answer.length === 0) {  //a-b가 음수이면 -1, 양수이면 +1, 0이면 0이 나오고, 내림차순으로 정렬하고 싶을 경우네는 a-b대신에 b-a을 쓰면 된다
+        answer.push(-1);        //answer의 length가 0인 경우는 나누어지는 수가 없는 것이기 때문에 -1로 나오게 한다.
+    }return answer;
+} 
+
+//.sort()
+function compare(a, b) {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+  
+
+  //2016년
+
+  //정답
+  function solution(a, b) {
+    var answer = '';
+    let date = new Date(2016, a-1, b+1) //월은 0부터 시작
+    let day = date.getDay(); //.getDay()에서는 일-토 : 0-6
+    let all_day = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+
+    console.log(all_day[day-1]);
+    return all_day[day-1];
+}

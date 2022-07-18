@@ -231,3 +231,151 @@ function solution(price, money, count) {
 
 /* 간단한 수학식이었고, if 문을 더 간결하게 쓸 수 있는 방법을 생각해보았다.
 return을 쓸 때에도 정해진 형식이 아닌 위처럼 쓸 수 있다는 것도 알게 되었다. */
+
+
+
+//13. 2016년
+  //정답
+  function solution(a, b) {
+    var answer = '';
+    let date = new Date(2016, a-1, b+1) //월은 0부터 시작
+    let day = date.getDay(); //.getDay()에서는 일-토 : 0-6
+    let all_day = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+
+    console.log(all_day[day-1]);
+    return all_day[day-1];
+}
+
+//new Date()
+let today = new Date()
+let birthday = new Date('December 17, 1995 03:24:00')
+let birthday = new Date('1995-12-17T03:24:00')
+let birthday = new Date(1995, 11, 17)            // 월은 0부터 시작해서 12월을 나타내고 싶으면 11을 사용
+let birthday = new Date(1995, 11, 17, 3, 24, 0)
+
+
+//14. 나누어 떨어지는 숫자 배열
+
+function solution(arr, divisor) {
+    var answer = [];
+    for (let i=0; i<arr.length; i++) {
+        if (arr[i] % divisor == 0) {
+            answer.push(arr[i]);
+    } 
+} 
+    answer.sort((a,b)=>a-b);  //.sort() 간단한 함수는 이렇게 쓴다
+    if (answer.length === 0) {  //오름차순으로 정리하고 싶을 때는 a-b로 쓰고, 내림차순으로 정렬하고 싶을 경우에는 b-a을 쓴다.
+        answer.push(-1);        //answer의 length가 0인 경우는 나누어지는 수가 없는 것이기 때문에 -1로 나오게 한다.
+    }return answer;
+} 
+
+//.sort()
+function compare(a, b) {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+  
+
+//15. 내적 
+function solution(a, b) {
+    let answer = 0;
+    for(let i=0; i<a.length; i++){
+        answer += a[i]*b[i] //+= 인것을 기억할 것!!
+    }
+    //a[i]*b[i]의 합
+    return answer;
+}
+
+
+
+//16. 문자열 내 p와 y의 개수
+//정답1
+function solution(s){
+    let change = s.toLowerCase(); //소문자로 바꾸기
+    console.log(change);
+    let check_p = change.match(/p/g).length; //p와 일치하는 개수
+    console.log(check_p);
+    let check_y = change.match(/y/g).length; //y와 일치하는 개수
+    console.log(check_y);
+    
+    if (check_p == check_y) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//.toLowerCase(바꿀거)
+//찾아질 곳.match(찾을 것) => [찾아진 것이 배열로 나온다.]
+const paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+const regex = /[A-Z]/g; //정규식을 정의해주었고
+const found = paragraph.match(regex); //정규식에 매칭되는 것(대문자) 찾기
+
+console.log(found);
+// expected output: Array ["T", "I"]
+
+//정답2
+function solution(s){
+    let change = s.toLowerCase(); //소문자로 바꾸기
+//    console.log(change);
+    let check_p = change.split("p").length; //p를 기준으로 문자열을 나눠주고 길이 저장
+    let check_y = change.split("y").length; //y를 기준으로 문자열을 나눠주고 길이 저장
+    
+    return check_p == check_y ? true : false;
+}
+//check_p == check_y 라면, true(value1)
+//check_p == check_y 아니라면, false(value2)
+
+// i를 앞에다가 두고 쓸 수도 있다.
+function solution(seoul) {
+    var answer = '';
+    for(var i = 0; i<seoul.length; i++) {
+        if(seoul[i] == "Kim") {
+            answer = i;
+            break; // i가 발견되었다면 break하고 해당 인덱스를 return
+        }
+    }
+    return '김서방은 '+answer+'에 있다';
+}
+
+//17. 문자열 다루기 기본
+//정답
+function onlyNumbers(str) {
+    return /^[0-9]+$/.test(str); 
+  }                                
+   
+  console.log(onlyNumbers('1234')); // 👉️ true
+  console.log(onlyNumbers('123hello123')); // 👉️ false
+  console.log(onlyNumbers('123.5')); // 👉️ false
+
+  //정규식.test(string) string에 정규식 포함 되어있으면 true, 아니면 false
+
+
+//18. 서울에서 김서방 찾기
+
+//정답
+function solution(seoul) {
+    var answer = '';
+    let find = seoul.indexOf('Kim');
+    answer = '김서방은 ' + find + '에 있다'
+    return answer;
+
+//method : indexOf(찾으려는 것)
+
+const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+
+console.log(beasts.indexOf('bison')); //찾으려는 element만을 입력하면
+// expected output: 1  //호출한 sring 객체에서 주어진 값과 일치하는 첫 인덱스를 반환하고 없으면 -1을 반환한다
+
+// start from index 2 
+console.log(beasts.indexOf('bison', 2));  //찾으려는 element와 시작하는 위치를 입력하면
+// expected output: 4 // 2번재인 'camel'이후에 있는 4번째 자리에 있는'bison'이 처음 일치해서 result = 4
+
+console.log(beasts.indexOf('giraffe')); //'giraffe'는 없으니까 -1
+// expected output: -1
