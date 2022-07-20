@@ -473,3 +473,277 @@ function compare(a, b) {
     console.log(all_day[day-1]);
     return all_day[day-1];
 }
+
+//이상한 문자 만들기
+
+//정답
+let s = "try hello world";
+
+function solution(s) {
+    var answer = [];
+    let word = s.split(' '); //s를 띄어쓰기를 기준으로 나눠주면 [ 'try', 'hello', 'world' ] 나옴
+    for(let i=0; i<word.length; i++){ //word의 0번째인 'try'부터 한번씩 가져온다
+        let sum = ''; // word의 0번째부터 가져와서 대문자로 바꿔줄 것을 sum이라는 변수로 정의
+        for(let j=0; j<word[i].length; j++){ //word의 0번째인 try에서 0번째,2번째인 t,y를 대문자로 바꿔주는 반복문
+           if(j%2==0){
+             sum += word[i][j].toUpperCase();
+           }else{
+             sum += word[i][j].toLowerCase();
+           }
+        }                     
+    let a = answer.push(sum) // 여기서 console.log(answer.push(sum))을 찍으면 작동이 안된다. 왜냐하면 콘솔을 찍는것은 결과만 뱉는것이 아닌 실제로 실행을 하기 때문에
+    console.log(sum)         // 콘솔로 찍어주고 또 실행하는 코드를 적어주면 2번 반복하게 된다. 이럴때는 콘솔로 찍고 싶은 값을 변수로 정의해주고 콘솔로 찍는 것이 좋다.
+    //    console.log(sum)   result => TrY HeLlO WoRlD
+    //    console.log(answer)  result =>[  'TrY', 'HeLlO', 'WoRlD' ]
+}
+    return answer.join(' '); //answer의 각 element들을 ' ' 를 넣어서 합쳐준다.
+}
+//.join('중간에 넣을 것')
+//합쳐줄 것.join('중간에 넣을 것')
+
+
+//다른사람 답
+
+//띄어쓰기를 기준으로 나누기
+//인덱스값 2로 나눠서 if 문으로 대소문자 바꿔주기
+   // console.log(word);//[ 'try', 'hello', 'world' ]
+   // console.log(word[0][0]); // try
+
+   function solution(s) {
+    let answer = [];
+// 먼저 s의 값을 공백을 기준으로 쪼갠다
+let result  = s.split(" ")
+
+// 그리고 i가 0부터 result의 길이만큼 돌게 되는데
+// 이 때 sum이라는 변수를 새로 만들어 문자열을 넣어준다
+for ( let i = 0; i < result.length; i++) {
+    let sum = '';
+    // 다시한번 이중 for문을 이용하여 j가 result[i]의 길이만큼 돌게 되는데
+    // 여기서 만약 j가 짝수라면 sum에 result[i][j]를 대문자로 붙여준다.
+    // 만약 j가 홀수라면 sum에 result[i][j]를 소문자로 붙여준다.
+    for(let j = 0; j < result[i].length; j++) {
+        if (j % 2 === 0) {
+            sum += result[i][j].toUpperCase()
+        } else {
+            sum += result[i][j].toLowerCase()
+        }
+    }
+    // 다음 단계로는 answer에 sum을 push
+    answer.push(sum)
+}
+// 마지막으로 분리된 배열을 공백을 기준으로 하나의 문자열로 합쳐서 return
+return answer.join(' ')
+}
+
+
+//완주하지 못한 선수
+//정답
+function solution(participant, completion) {
+    const total = participant.length;
+    var answer = '';
+    
+    let a = participant.sort(); //알파벳 순으로 정리
+    let b = completion.sort();
+    console.log(a);
+    console.log(b);
+    for(let i=0; i<total; i++){
+        if(participant[i] !== completion[i]){ //알파벳 순으로 정리되었는데 일치하지 않는다면 완주하지 못한 것이니까
+            answer = participant[i]; //완주하지 못한 사람 출력
+            return answer;
+        }
+    }
+}
+
+//실패한 나의 풀이
+
+//일단 완료자의 요소를 참가자의 요쇼와 비교해 있으면 참가자에서 그 요소를 제거하는 것으로 생각하고 했는데
+//일단 그 일치하는 요소들의 인덱스는 구햇으나 하나씩 지울때마다 인덱스 값이 바뀌어서 어떻게 해야할지...모르겠다....
+function solution(participant, completion) {
+    var answer = '';
+    let a = participant;
+    for(let i = 0; i <completion.length; i++){
+        let check = participant.includes(completion[i])
+        if(check == true){
+           let name = participant.indexOf(completion[i])
+            for(let j = 0; j <name.length; j++){
+           let b = name.sort((a,b)=>a-b);
+                a.splice([b[j]]);
+            } console.log(name);
+           }
+    }
+    return answer;
+}
+
+//수박수박수
+//정답
+function solution(n) {
+    var answer = '';
+    for(let i = 0; i<n; i++){
+        if(i%2===0){
+            answer += "수";  //추가할 떼는 그냥 추가할 것만 쓰기. 괜히 i번째 생각하다가 망했네
+        }else{
+            answer += "박";
+        }
+    }
+    return answer;
+}
+
+// 리턴 배열의 인덱스에 따라 수 또는 박을 넣어볼까...?
+//return.length는 n, return의 마지막 인덱스는 n-1
+//["0(1)(2)...(n-1)"] return[i] i가 짝수이면 수 홀수이면 박
+
+
+// 자연수 뒤집기
+
+//정답
+
+function solution(n) {
+    var answer = [];
+    let N = n.toString()
+    for (var i = N.length - 1; i >= 0; i--) { //for문을 쓰는 새로운 방식
+        answer.push(Number(N[i]));
+    }
+    return answer;
+}
+
+//시간이 있다면 map과 reverse를 쓰는 것도 찾아보자
+
+//indexOf(element) => index 값/없으면 -1
+function solution(n){
+    let answer = [];
+    let N = n.toString();//"12345"
+    for(let i = 0; i < N.length; i++){
+      let index1 = N.indexOf(i)//N.indexOf(0)="1" //N.length = 5
+      let index2 = N.indexOf(N.length-(i+1))//N.indexOf(5-(0+1))=N.indexOf(4)="5"
+      if(i+(N.length-(i+1))== N.length-1){ //0+(5-(0+1)) == 5-1
+        N[i] = N[N.length-i],
+        N[N.length-i] = N[i]
+      }
+    }
+  }
+
+  //콜라츠 추측
+
+  function solution(num) {
+    var answer = 0;
+    for(let i = 0; i <500; i++){
+         if(num%2==0){
+        num = num/2; //어차피 계속 반복해야 하기 때문에 새로운 변수를 넣어줄 필요가 없다
+    }
+        else if(num==1){ //else if를 통해 어러가지의 경우의 수를 넣어줄 수 있다.
+        return i
+    }
+        else if(num%2==1){
+        num = (num*3)+1
+    }
+}
+    return -1;
+    }
+    
+
+    //자릿수 더하기
+    //정답
+    function solution(n){
+        var answer = 0;
+        let N = n.toString();
+        
+        for(let i = 0; i <N.length; i++){
+         answer += Number(N[i])  
+        }
+        return answer;
+    }
+
+
+    //정수 내림차순으로 배치하기
+    //정답
+
+    function solution(n) {
+        var answer = 0;
+        let arr = n.toString().split('');
+    console.log(arr)//[ '1', '1', '8', '3', '7', '2' ]
+    let sort = arr.sort((a,b) => b-a);
+    //[ '8', '7', '3', '2', '1', '1' ]  
+        console.log(sort.join('')) //"873211"
+        answer = Number(sort.join(''));
+        return answer;
+    }
+
+    //정수 제곱근 판별
+    //정답
+    function solution(n) {
+        var answer = 0;
+        if(Math.sqrt(n) % 1 == 0 ){ //n의 제곱근이 양의 정수라면 1로 나누었을 때 나머지 0
+            return (Math.sqrt(n)+1)*(Math.sqrt(n)+1)
+        }else{ //n의 제곱근이 양의 정수가 아니라면(예를들어 루트3=1.***인 경우 1로 나누면 나머지가 0이 아님)
+           return -1
+        }
+        }
+
+//Math.sqrt(n)
+//n의 제곱근은 구한다.        
+
+
+//제일 작은 수 제거하기
+//정답
+function solution(arr) {
+    var answer = [];
+    if(arr.length == 1){
+        return [-1]
+    }
+    else{
+   let min = Math.min(...arr)
+   arr.splice(arr.indexOf(min),1)
+        return arr
+        }
+}
+    //console.log(sort.pop()) 
+    //마지막 지우고 배열 출력하면 마지막 element가 지워진 배열이 나옴 
+//sort를 쓰면 내림차순으로 정렬이 되기때문에 원래 배열인 arr의 배열에서 최솟값만 제거한 배열의 위치가 달라짐
+
+//.splice(시작index,지울 개수)
+
+var list = ["bar", "baz", "foo", "qux"];
+    
+    list.splice(0, 2); 
+    // Starting at index position 0, remove two elements ["bar", "baz"] and retains ["foo", "qux"].
+
+
+
+
+
+//틀린 방법
+function solution(arr) {
+    var answer = [];
+    if(arr.length == 1){
+        return [-1]
+    }
+    else{
+    let sort = arr.sort((a,b) => b-a);
+    sort.pop();
+    return sort;
+        }
+}
+    //console.log(sort.pop()) 
+    //마지막 지우고 배열 출력하면 마지막 element가 지워진 배열이 나옴 
+//sort를 쓰면 내림차순으로 정렬이 되기때문에 원래 배열인 arr의 배열에서 최솟값만 제거한 배열의 위치가 달라짐
+
+//하샤드 수
+//정답
+function solution(x) {
+    var answer = '';
+    let str = x.toString(); //[10]
+    let sum = 0;
+    for(let i = 0; i<str.length; i++){
+        sum += Number(str[i])
+    } //console.log(sum)
+    if(x%sum == 0){
+        answer = true;
+    }else{
+        answer = false;
+    }
+    return answer;
+}
+
+//스트링으로 만들어서 각 인덱스 더해주고
+//더한 값 sum으로 원래 값 x를 나눠주기 >> x%sum==0
+

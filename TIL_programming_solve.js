@@ -22,6 +22,21 @@ process.stdin.on('data', data => {
 //      *****
 
 
+/* replit에서 작성한 부분 - 입력값과 함수를 작성해서 콘솔로 함수에 입력값을 줬을때 나오게 하는 부분*/
+let input1 = 5;
+let input2 = 3;
+
+function stars(a,b) {
+let star = "";
+for(let i = 0; i <b; i++){
+  let k = "*".repeat(a);
+  star = star + "\n" +k;
+}
+return star;
+}
+console.log(stars(input1,input2));
+//함수는 리턴을 해줘야 값을 내놓는다....그리고 리턴은 한번만 한다
+
 //2. 짝수와 홀수
 
 function solution(num) {
@@ -33,6 +48,17 @@ function solution(num) {
     }
     return answer;
 }
+/* replit에서 작성한 부분 - 입력값과 함수를 작성해서 콘솔로 함수에 입력값을 줬을때 나오게 하는 부분*/
+function solution(num) {
+    var answer = '';
+    if(num %2==0){
+        answer = "Even"
+    }else {
+        answer = "Odd"
+    }
+    return answer;
+}
+console.log(solution(2));
 
 //3. 가운데 글자 가져오기
 
@@ -46,6 +72,23 @@ function solution(s) {
     }                                          //새롭게 배운 것 : Math.floor(소수점있는 숫자) => 앞의 자리만 나타낸다
     return answer;
 }
+
+
+/* replit에서 작성한 부분 - 입력값과 함수를 작성해서 콘솔로 함수에 입력값을 줬을때 나오게 하는 부분*/
+let s = "abcde";
+
+function solution() {
+    var answer = '';
+    if(s.length%2 == 0){
+      answer = s[s.length/2-1] + s[s.length/2];
+    }else{
+      answer = s[Math.floor(s.length/2)]
+    }
+    return answer;
+}
+console.log(solution(s));
+
+
 
 //4. 두 정수 사이의 합
 //(3,5)를 입력하면 3+4+5 가 나와야 한다
@@ -121,7 +164,7 @@ function solution(numbers) {
 //ture이면 +, false이면 -로 부호 바뀌어서 나온 총 element들(배열)의 합 구하기
 
 let absolutes = [4,7,12];
-let sighs = [true,false,true];
+let signs = [true,false,true];
 
 function solution(absolutes, signs) {
     let answer = 0; 
@@ -155,7 +198,7 @@ function solution(arr) {
     return answer;
 }
 
-/* 배열의 요소들의 합을 구할 때는 길이로 나눈다 */
+/* 배열의 요소들의 평균을 구할 때는 길이로 나눈다 */
 
 //9. 핸드폰 번호 가리기
 //맨 뒤4자리 빼고 다 *로 바꾼다
@@ -388,3 +431,271 @@ function solution(seoul) {
         }
     }
     return '김서방은 '+answer+'에 있다';
+
+
+//19. 수박수박수
+
+//정답
+function solution(n) {
+    var answer = '';
+    for(let i = 0; i<n; i++){
+        if(i%2===0){
+            answer += "수";  //추가할 떼는 그냥 추가할 것만 쓰기. 괜히 i번째 생각하다가 망했네
+        }else{
+            answer += "박";
+        }
+    }
+    return answer;
+}
+
+// 리턴 배열의 인덱스에 따라 수 또는 박을 넣어볼까...?
+//return.length는 n, return의 마지막 인덱스는 n-1
+//["0(1)(2)...(n-1)"] return[i] i가 짝수이면 수 홀수이면 박
+
+//20. 완주하지 못한 선수
+//정답
+function solution(participant, completion) {
+    const total = participant.length;
+    var answer = '';
+    
+    let a = participant.sort(); 
+    let b = completion.sort();
+    console.log(a);
+    console.log(b);
+    for(let i=0; i<total; i++){
+        if(participant[i] !== completion[i]){ 
+            answer = participant[i]; 
+            return answer;
+        }
+    }
+}
+
+//method
+//.sort()
+//()안에 아무것도 넣지 않으면 알파벳 순으로 정렬이 된다.
+//!== if not
+
+
+
+//실패한 나의 풀이
+
+//일단 완료자의 요소를 참가자의 요쇼와 비교해 있으면 참가자에서 그 요소를 제거하는 것으로 생각하고 했는데
+//일단 그 일치하는 요소들의 인덱스는 구햇으나 하나씩 지울때마다 인덱스 값이 바뀌어서 어떻게 해야할지...모르겠다....
+function solution(participant, completion) {
+    var answer = '';
+    let a = participant;
+    for(let i = 0; i <completion.length; i++){
+        let check = participant.includes(completion[i])
+        if(check == true){
+           let name = participant.indexOf(completion[i])
+            for(let j = 0; j <name.length; j++){
+           let b = name.sort((a,b)=>a-b);
+                a.splice([b[j]]);
+            } console.log(name);
+           }
+    }
+    return answer;
+}
+
+
+//결론적으로 너무 복잡하고 헷갈리는데 그래도 이 과정을 생각하면서 알고리즘 문제를 푸는데 생각하는 연습은 된 것 같다.
+
+
+//21. 이상한 문자 만들기
+//정답
+
+let s = "try hello world";
+
+function solution(s) {
+    var answer = [];
+    let word = s.split(' '); 
+    for(let i=0; i<word.length; i++){ /
+        let sum = '';
+        for(let j=0; j<word[i].length; j++){ 
+           if(j%2==0){
+             sum += word[i][j].toUpperCase();
+           }else{
+             sum += word[i][j].toLowerCase();
+           }
+        }                     
+    let a = answer.push(sum) 
+    console.log(sum)         
+    //    console.log(sum)   result => TrY HeLlO WoRlD
+    //    console.log(answer)  result =>[  'TrY', 'HeLlO', 'WoRlD' ]
+}
+    return answer.join(' '); 
+
+//*주의할점*
+//콘솔을 찍는 것은 그냥 결과만 뱉는 것이 아닌 실제로 실행을 하는 것이기 때문에,
+//이로 인해서 내가 원하는 값에 영향을 끼칠 수 있다.
+//따라서 콘솔을 찍어주고 싶을 경우에는 알고싶은 것을 변수로 지정하고 그 변수를 콘솔에 찍어주는 것이 좋다.
+
+
+//.join('중간에 넣을 것')
+//(합쳐진 것이 들어갈 곳).join('중간에 넣을 것')
+
+//22. 자릿수 더하기
+    //정답
+    function solution(n){
+        var answer = 0;
+        let N = n.toString();
+        
+        for(let i = 0; i <N.length; i++){
+         answer += Number(N[i])  
+        }
+        return answer;
+    }
+//23. 자연수 뒤집기
+//정답
+
+function solution(n) {
+    var answer = [];
+    let N = n.toString()
+    for (var i = N.length - 1; i >= 0; i--) { //for문을 쓰는 새로운 방식
+        answer.push(Number(N[i]));
+    }
+    return answer;
+}
+
+//시간이 있다면 map과 reverse를 쓰는 것도 찾아보자
+
+//indexOf(element) => index 값/없으면 -1
+function solution(n){
+    let answer = [];
+    let N = n.toString();//"12345"
+    for(let i = 0; i < N.length; i++){
+      let index1 = N.indexOf(i)//N.indexOf(0)="1" //N.length = 5
+      let index2 = N.indexOf(N.length-(i+1))//N.indexOf(5-(0+1))=N.indexOf(4)="5"
+      if(i+(N.length-(i+1))== N.length-1){ //0+(5-(0+1)) == 5-1
+        N[i] = N[N.length-i],
+        N[N.length-i] = N[i]
+      }
+    }
+  }
+
+//24. 내림차순으로 배치하기
+/* n	return
+118372	873211 */
+//정답
+
+    function solution(n) {
+        var answer = 0;
+        let arr = n.toString().split('');
+    console.log(arr)//[ '1', '1', '8', '3', '7', '2' ]
+    let sort = arr.sort((a,b) => b-a);
+    //[ '8', '7', '3', '2', '1', '1' ]  
+        console.log(sort.join('')) //"873211"
+        answer = Number(sort.join(''));
+        return answer;
+    }
+
+//25. 정수 제곱근 판별
+//정답
+function solution(n) {
+    var answer = 0;
+    if(Math.sqrt(n) % 1 == 0 ){ //n의 제곱근이 양의 정수라면 1로 나누었을 때 나머지 0
+        return (Math.sqrt(n)+1)*(Math.sqrt(n)+1)
+    }else{ //n의 제곱근이 양의 정수가 아니라면(예를들어 루트3=1.***인 경우 1로 나누면 나머지가 0이 아님)
+       return -1
+    }
+    }
+
+//Math.sqrt(n) = n의 제곱근
+//MAth.pow(값,n) = 값의 n제곱     
+
+//26. 제일 작은 수 제거하기
+
+//정답
+/* arr	     return
+[4,3,2,1]	[4,3,2]
+[10]	    [-1]
+ */
+function solution(arr) {
+    var answer = [];
+    if(arr.length == 1){
+        return [-1]
+    }
+    else{
+   let min = Math.min(...arr)
+   arr.splice(arr.indexOf(min),1) //arr.indexOf(min) arr에서 제일 작은 수의 인덱스값
+        return arr
+        }
+}
+    //console.log(sort.pop()) 
+    //마지막 지우고 배열 출력하면 마지막 element가 지워진 배열이 나옴 
+//sort를 쓰면 내림차순으로 정렬이 되기때문에 원래 배열인 arr의 배열에서 최솟값만 제거한 배열의 위치가 달라짐
+
+//.splice(시작index,지울 개수)
+
+var list = ["bar", "baz", "foo", "qux"];
+    
+    list.splice(0, 2); 
+    // Starting at index position 0, remove two elements ["bar", "baz"] and retains ["foo", "qux"].
+
+
+//틀린 방법
+function solution(arr) {
+    var answer = [];
+    if(arr.length == 1){
+        return [-1]
+    }
+    else{
+    let sort = arr.sort((a,b) => b-a);
+    sort.pop();
+    return sort;
+        }
+}
+//console.log(sort.pop()) 
+//마지막 지우고 배열 출력하면 마지막 element가 지워진 배열이 나옴 
+    
+//sort를 쓰면 내림차순으로 정렬이 되기때문에 원래 배열인 arr의 배열에서 최솟값만 제거한 배열의 위치가 달라짐
+
+
+//27. 콜라츠 추측
+/* 주어진 수가 1이 될 때까지 다음 작업을 반복하면, 모든 수를 1로 만들 수 있다는 추측입니다.
+1-1. 입력된 수가 짝수라면 2로 나눕니다. 
+1-2. 입력된 수가 홀수라면 3을 곱하고 1을 더합니다. 
+2. 결과로 나온 수에 같은 작업을 1이 될 때까지 반복합니다. 
+예를 들어, 
+주어진 수가 6이라면 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1 이 되어 총 8번 만에 1이 됩니다. 
+위 작업을 몇 번이나 반복해야 하는지 반환하는 함수, solution을 완성해 주세요. 
+단, 주어진 수가 1인 경우에는 0을, 작업을 500번 반복할 때까지 1이 되지 않는다면 –1을 반환해 주세요.
+ */
+//정답
+function solution(num) {
+    var answer = 0;
+    for(let i = 0; i <500; i++){
+         if(num%2==0){
+        num = num/2; //어차피 계속 반복해야 하기 때문에 새로운 변수를 넣어줄 필요가 없다
+    }
+        else if(num==1){ //else if를 통해 어러가지의 경우의 수를 넣어줄 수 있다.
+        return i
+    }
+        else if(num%2==1){
+        num = (num*3)+1
+    }
+}
+    return -1;
+    }
+
+//28. 하샤드 수
+//정답
+
+let x = 10;
+function solution(x) {
+    var answer = '';
+    let str = x.toString(); //[10]
+    let sum = 0;
+    for(let i = 0; i<str.length; i++){
+        sum += Number(str[i])
+    } //console.log(sum)
+    if(x%sum == 0){
+        answer = true;
+    }else{
+        answer = false;
+    }
+    return answer;
+}
+
+//스트링으로 만들어서 각 인덱스 더해주고
+//더한 값 sum으로 원래 값 x를 나눠주기 >> x%sum==0
