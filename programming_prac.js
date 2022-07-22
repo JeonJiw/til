@@ -548,7 +548,7 @@ function solution(participant, completion) {
     console.log(b);
     for(let i=0; i<total; i++){
         if(participant[i] !== completion[i]){ //알파벳 순으로 정리되었는데 일치하지 않는다면 완주하지 못한 것이니까
-            answer = participant[i]; //완주하지 못한 사람 출력
+            answer = participant[i]; //완주하지 못한 사람 출력, 단 한명의 선수만 완주하지 못했을 경우니까 이렇게 해도 됨
             return answer;
         }
     }
@@ -747,3 +747,7 @@ function solution(x) {
 //스트링으로 만들어서 각 인덱스 더해주고
 //더한 값 sum으로 원래 값 x를 나눠주기 >> x%sum==0
 
+/* String() 은 null과 undefined에 대헤서도 잘 동작하는 반면,
+toString() 사용시 에러가 발생한다.
+Number.prototype.toString() : toString() 메서드는 특정 진수로 객체를 표현한 문자열을 반환
+String() - 문자로 형변환하여 반환 */
